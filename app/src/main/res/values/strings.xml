@@ -2,4 +2,5 @@
   <string name="app_name">FidgetCubeApp</string>
   <string name="open">Open</string>
   <string name="close">Close</string>
+  <string name="menu_header">Fidgets</string>
 </resources>
