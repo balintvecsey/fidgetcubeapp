@@ -9,10 +9,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
-import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.Fidget1;
-import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.Fidget2;
 import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.Fidget3;
 import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.SpinnerFragment;
+import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.CatFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragment = new SpinnerFragment();
         break;
       case R.id.nav_fidget2:
-        fragment = new Fidget2();
+        fragment = new CatFragment();
         break;
       case R.id.nav_fidget3:
         fragment = new Fidget3();
