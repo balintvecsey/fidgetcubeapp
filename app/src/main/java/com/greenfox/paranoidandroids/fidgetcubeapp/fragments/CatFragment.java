@@ -1,6 +1,8 @@
 package com.greenfox.paranoidandroids.fidgetcubeapp.fragments;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.Nullable;
@@ -22,17 +24,24 @@ public class CatFragment extends Fragment {
       @Nullable Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_cat, container, false);
     ImageView cat = (ImageView) view.findViewById(R.id.cat);
+    cat.setDrawingCacheEnabled(true);
 
     cat.setOnTouchListener(new OnTouchListener() {
       @Override
       public boolean onTouch(View v, MotionEvent event) {
+        Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
+        int color = bmp.getPixel((int) event.getX(), (int) event.getY());
         Vibrator vib = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
-        if (event.getAction() == MotionEvent.ACTION_MOVE) {
-          vib.vibrate(60000);
+        if (color == Color.TRANSPARENT) {
+          return false;
         } else {
-          vib.cancel();
+          if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            vib.vibrate(60000);
+          } else {
+            vib.cancel();
+          }
+          return true;
         }
-        return true;
       }
     });
 
