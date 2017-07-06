@@ -8,10 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.greenfox.paranoidandroids.fidgetcubeapp.R;
 
-/**
- * Created by Bálint on 2017. 07. 06..
- */
-
 public class Fidget2 extends Fragment {
 
   @Nullable
