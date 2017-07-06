@@ -11,9 +11,9 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.DrawingFragment;
-import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.Fidget2;
-import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.Fidget3;
+
 import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.SpinnerFragment;
+import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.CatFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -54,10 +54,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragment = new SpinnerFragment();
         break;
       case R.id.nav_fidget2:
-        fragment = new DrawingFragment();
+        fragment = new CatFragment();
         break;
       case R.id.nav_fidget3:
-        fragment = new Fidget3();
+        fragment = new DrawingFragment();
         break;
     }
     if (fragment != null) {

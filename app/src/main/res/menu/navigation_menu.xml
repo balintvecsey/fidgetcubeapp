@@ -5,9 +5,9 @@
     android:title="@string/spinner" />
 
   <item android:id="@+id/nav_fidget2"
-    android:title="Drawing" />
+    android:title="@string/zzzz" />
 
   <item android:id="@+id/nav_fidget3"
-    android:title="Fidget3" />
+    android:title="@string/drawing" />
 
 </menu>

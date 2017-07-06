@@ -26,7 +26,7 @@ public class DrawingFragment extends Fragment {
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                            @Nullable Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.drawing, container, false);
+    View view = inflater.inflate(R.layout.fragment_drawing, container, false);
     dv = new DrawingView(getActivity());
 
     RelativeLayout relativeLayout = (RelativeLayout) view.findViewById(R.id.drawing_container);

@@ -19,7 +19,7 @@ public class SpinnerFragment extends Fragment {
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-    View view = inflater.inflate(R.layout.spinner, container, false);
+    View view = inflater.inflate(R.layout.fragment_spinner, container, false);
 
     final ImageView spinner = (ImageView) view.findViewById(R.id.spinner);
 
