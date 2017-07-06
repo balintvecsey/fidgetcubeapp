@@ -5,7 +5,7 @@
     android:title="@string/spinner" />
 
   <item android:id="@+id/nav_fidget2"
-    android:title="Fidget2" />
+    android:title="Drawing" />
 
   <item android:id="@+id/nav_fidget3"
     android:title="Fidget3" />

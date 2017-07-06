@@ -15,5 +15,6 @@ public class Fidget1 extends Fragment {
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fidget1, container, false);
+
   }
 }
