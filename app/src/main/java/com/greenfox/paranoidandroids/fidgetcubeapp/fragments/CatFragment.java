@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import com.greenfox.paranoidandroids.fidgetcubeapp.R;
 
 public class CatFragment extends Fragment {
@@ -20,9 +21,9 @@ public class CatFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_cat, container, false);
-    Button button = (Button) view.findViewById(R.id.vib);
+    ImageView cat = (ImageView) view.findViewById(R.id.cat);
 
-    button.setOnTouchListener(new OnTouchListener() {
+    cat.setOnTouchListener(new OnTouchListener() {
       @Override
       public boolean onTouch(View v, MotionEvent event) {
         Vibrator vib = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
@@ -31,7 +32,7 @@ public class CatFragment extends Fragment {
         } else {
           vib.cancel();
         }
-        return false;
+        return true;
       }
     });
 
