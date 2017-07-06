@@ -12,7 +12,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import com.greenfox.paranoidandroids.fidgetcubeapp.R;
 
@@ -30,18 +29,21 @@ public class CatFragment extends Fragment {
       @Override
       public boolean onTouch(View v, MotionEvent event) {
         Bitmap bmp = Bitmap.createBitmap(v.getDrawingCache());
-        int color = bmp.getPixel((int) event.getX(), (int) event.getY());
         Vibrator vib = (Vibrator) getContext().getSystemService(Context.VIBRATOR_SERVICE);
-        if (color == Color.TRANSPARENT) {
-          return false;
-        } else {
-          if (event.getAction() == MotionEvent.ACTION_MOVE) {
-            vib.vibrate(60000);
-          } else {
+        if (event.getX() >= 0 && event.getY() >= 0 && event.getY() < bmp.getHeight() && bmp.getWidth() > event.getX()) {
+          int color = bmp.getPixel((int) event.getX(), (int) event.getY());
+          if (color == Color.TRANSPARENT) {
             vib.cancel();
+            return false;
+          } else {
+            if (event.getAction() == MotionEvent.ACTION_MOVE) {
+              vib.vibrate(60000);
+            }
+            return true;
           }
-          return true;
         }
+        vib.cancel();
+        return false;
       }
     });
 
