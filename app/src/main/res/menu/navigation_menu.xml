@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-  <item android:id="@+id/nav_fidget1"
-    android:title="@string/spinner" />
+  <group android:checkableBehavior="single">
+    <item
+      android:id="@+id/nav_fidget1"
+      android:title="@string/spinner" />
 
-  <item android:id="@+id/nav_fidget2"
-    android:title="@string/pur" />
+    <item
+      android:id="@+id/nav_fidget2"
+      android:title="@string/pur" />
 
-  <item android:id="@+id/nav_fidget3"
-    android:title="@string/drawing" />
+    <item
+      android:id="@+id/nav_fidget3"
+      android:title="@string/drawing" />
+  </group>
 
 </menu>
