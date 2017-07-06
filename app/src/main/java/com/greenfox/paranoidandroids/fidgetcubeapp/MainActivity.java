@@ -1,10 +1,16 @@
 package com.greenfox.paranoidandroids.fidgetcubeapp;
 
 import android.support.v7.app.ActionBar;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
+
+  private DrawerLayout mDrawerLayout;
+  private ActionBarDrawerToggle mToggle;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -14,5 +20,22 @@ public class MainActivity extends AppCompatActivity {
     ActionBar actionBar = getSupportActionBar();
     actionBar.setDisplayUseLogoEnabled(true);
     actionBar.setDisplayShowHomeEnabled(true);
+
+    mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+    mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
+
+    mDrawerLayout.addDrawerListener(mToggle);
+    mToggle.syncState();
+
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    if (mToggle.onOptionsItemSelected(item)) {
+      return true;
+    }
+
+    return super.onOptionsItemSelected(item);
   }
 }
