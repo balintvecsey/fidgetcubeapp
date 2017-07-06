@@ -38,6 +38,8 @@ public class CatFragment extends Fragment {
           } else {
             if (event.getAction() == MotionEvent.ACTION_MOVE) {
               vib.vibrate(60000);
+            } else {
+              vib.cancel();
             }
             return true;
           }
