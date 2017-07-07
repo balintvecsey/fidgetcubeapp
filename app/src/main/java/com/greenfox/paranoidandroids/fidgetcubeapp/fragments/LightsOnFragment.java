@@ -32,11 +32,11 @@ public class LightsOnFragment extends Fragment{
     final SeekBar seekbarLightsOn = (SeekBar) view.findViewById(R.id.seekBar_lights);
     Log.d(TAG, "canWrite: " + Settings.System.canWrite(getContext()));
 
-    Switch switchLightsOn = (Switch) view.findViewById(R.id.switch_lights);
+    final Switch switchLightsOn = (Switch) view.findViewById(R.id.switch_lights);
     try {
       currentBrightness = System.getInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS);
       Log.d(TAG, "onCreateView: " + currentBrightness);
-      if(currentBrightness == 255) {
+      if(currentBrightness >= 250) {
         switchLightsOn.setChecked(true);
       }
       seekbarLightsOn.setProgress(currentBrightness);
@@ -64,10 +64,16 @@ public class LightsOnFragment extends Fragment{
       @Override
       public void onClick(View v) {
         LogicService logicService = new LogicService();
-        currentBrightness = logicService.randomNumber(0, 255);
+        currentBrightness = logicService.randomNumber(0, 256);
         Log.d(TAG, "Random: " + currentBrightness);
         Settings.System.putInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS, currentBrightness);
         seekbarLightsOn.setProgress(currentBrightness);
+
+        if(currentBrightness >= 250) {
+          switchLightsOn.setChecked(true);
+        } else {
+          switchLightsOn.setChecked(false);
+        }
       }
     });
 
@@ -86,6 +92,12 @@ public class LightsOnFragment extends Fragment{
       @Override
       public void onStopTrackingTouch(SeekBar seekBar) {
         Settings.System.putInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS, currentBrightness);
+
+        if(currentBrightness >= 250) {
+          switchLightsOn.setChecked(true);
+        } else {
+          switchLightsOn.setChecked(false);
+        }
       }
     });
 
