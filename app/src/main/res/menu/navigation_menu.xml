@@ -3,24 +3,24 @@
 
   <group android:checkableBehavior="single">
     <item
-      android:id="@+id/nav_fidget1"
+      android:id="@+id/nav_spinner"
       android:title="@string/spinner"
       android:checked="true"/>
 
     <item
-      android:id="@+id/nav_fidget2"
-      android:title="@string/pur" />
-
-    <item
-      android:id="@+id/nav_fidget3"
-      android:title="@string/drawing" />
-
-    <item
-      android:id="@+id/nav_fidget4"
-      android:title="@string/lightson" />
-    <item
-      android:id="@+id/nav_fidget5"
+      android:id="@+id/nav_widgets"
       android:title="@string/widgets" />
+
+    <item
+      android:id="@+id/nav_lightson"
+      android:title="@string/lightson" />
+
+    <item
+      android:id="@+id/nav_pur"
+      android:title="@string/pur" />
+    <item
+      android:id="@+id/nav_draw"
+      android:title="@string/drawing" />
   </group>
 
 </menu>

@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-    displaySelectedScreen(R.id.nav_fidget1);
+    displaySelectedScreen(R.id.nav_spinner);
 
     mToolbar = (Toolbar) findViewById(R.id.nav_action);
     setSupportActionBar(mToolbar);
@@ -66,32 +66,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     if (mToggle.onOptionsItemSelected(item)) {
       return true;
     }
-
     return super.onOptionsItemSelected(item);
   }
 
   private void displaySelectedScreen(int id) {
-
     switch (id) {
-      case R.id.nav_fidget1:
-        fragment = new SpinnerFragment();
-        Log.d(TAG, "displaySelectedScreen: SpinnerFragment()");
+      case R.id.nav_widgets:
+        fragment = new WidgetFragment();
+        Log.d(TAG, "displaySelectedScreen: WidgetFragment()");
         break;
-      case R.id.nav_fidget2:
-        fragment = new CatFragment();
-        Log.d(TAG, "displaySelectedScreen: CatFragment()");
-        break;
-      case R.id.nav_fidget3:
-        fragment = new DrawingFragment();
-        Log.d(TAG, "displaySelectedScreen: DrawingFragment()");
-        break;
-      case R.id.nav_fidget4:
+      case R.id.nav_lightson:
         fragment = new LightsOnFragment();
         Log.d(TAG, "displaySelectedScreen: LightsOnFragment()");
         break;
-      case R.id.nav_fidget5:
-        fragment = new WidgetFragment();
-        Log.d(TAG, "displaySelectedScreen: WidgetFragment()");
+      case R.id.nav_spinner:
+        fragment = new SpinnerFragment();
+        Log.d(TAG, "displaySelectedScreen: SpinnerFragment()");
+        break;
+      case R.id.nav_pur:
+        fragment = new CatFragment();
+        Log.d(TAG, "displaySelectedScreen: CatFragment()");
+        break;
+      case R.id.nav_draw:
+        fragment = new DrawingFragment();
+        Log.d(TAG, "displaySelectedScreen: DrawingFragment()");
         break;
     }
     if (fragment != null) {
