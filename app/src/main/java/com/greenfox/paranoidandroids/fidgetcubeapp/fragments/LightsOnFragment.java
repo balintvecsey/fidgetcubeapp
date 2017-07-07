@@ -1,50 +1,47 @@
 package com.greenfox.paranoidandroids.fidgetcubeapp.fragments;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.provider.Settings.System;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.SeekBar;
+import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Switch;
-import com.greenfox.paranoidandroids.fidgetcubeapp.MainActivity;
 import com.greenfox.paranoidandroids.fidgetcubeapp.R;
 import com.greenfox.paranoidandroids.fidgetcubeapp.service.LogicService;
-
-/**
- * Created by Bálint on 2017. 07. 07..
- */
 
 public class LightsOnFragment extends Fragment{
 
   private static final String TAG = "LightsOnFragment";
+  int currentBrightness;
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
       @Nullable Bundle savedInstanceState) {
     final View view = inflater.inflate(R.layout.fragment_lightson, container, false);
+    final SeekBar seekbarLightsOn = (SeekBar) view.findViewById(R.id.seekBar_lights);
     Log.d(TAG, "canWrite: " + Settings.System.canWrite(getContext()));
+
     Switch switchLightsOn = (Switch) view.findViewById(R.id.switch_lights);
     try {
-      int currentLights = System.getInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS);
-      if(currentLights == 255) {
+      currentBrightness = System.getInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS);
+      Log.d(TAG, "onCreateView: " + currentBrightness);
+      if(currentBrightness == 255) {
         switchLightsOn.setChecked(true);
       }
+      seekbarLightsOn.setProgress(currentBrightness);
     } catch (SettingNotFoundException e) {
+      Log.e("Error", "Cannot access system brightness");
       e.printStackTrace();
     }
 
@@ -52,10 +49,13 @@ public class LightsOnFragment extends Fragment{
       @Override
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked) {
-          Settings.System.putInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS, 255);
+          currentBrightness = 255;
+          Settings.System.putInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS, currentBrightness);
         } else  {
-          Settings.System.putInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS, 0);
+          currentBrightness = 0;
+          Settings.System.putInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS, currentBrightness);
         }
+        seekbarLightsOn.setProgress(currentBrightness);
       }
     });
 
@@ -64,9 +64,28 @@ public class LightsOnFragment extends Fragment{
       @Override
       public void onClick(View v) {
         LogicService logicService = new LogicService();
-        int randomBrightness = logicService.randomNumber(0, 255);
-        Log.d(TAG, "onClick: " + randomBrightness);
-        Settings.System.putInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS, randomBrightness);
+        currentBrightness = logicService.randomNumber(0, 255);
+        Log.d(TAG, "Random: " + currentBrightness);
+        Settings.System.putInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS, currentBrightness);
+        seekbarLightsOn.setProgress(currentBrightness);
+      }
+    });
+
+    seekbarLightsOn.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
+      @Override
+      public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        currentBrightness = progress;
+      }
+
+      @Override
+      public void onStartTrackingTouch(SeekBar seekBar) {
+
+      }
+
+      @Override
+      public void onStopTrackingTouch(SeekBar seekBar) {
+        Settings.System.putInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS, currentBrightness);
       }
     });
 
