@@ -1,5 +1,9 @@
 package com.greenfox.paranoidandroids.fidgetcubeapp;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Build;
+import android.provider.Settings;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -45,6 +49,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
     navigationView.setNavigationItemSelectedListener(this);
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+      if (!Settings.System.canWrite(getBaseContext())) {
+        Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_WRITE_SETTINGS);
+        intent.setData(Uri.parse("package:" + getPackageName()));
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+      }
+    }
   }
 
   @Override
