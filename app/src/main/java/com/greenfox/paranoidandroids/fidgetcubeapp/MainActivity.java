@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.DrawingFragment;
 import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.SpinnerFragment;
 import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.CatFragment;
+import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.WidgetFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
@@ -69,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
       case R.id.nav_fidget3:
         fragment = new DrawingFragment();
         Log.d(TAG, "displaySelectedScreen: DrawingFragment()");
+        break;
+      case R.id.nav_fidget4:
+        fragment = new WidgetFragment();
+        Log.d(TAG, "displaySelectedScreen: WidgetFragment()");
         break;
     }
     if (fragment != null) {
