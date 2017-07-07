@@ -18,6 +18,9 @@
     <item
       android:id="@+id/nav_fidget4"
       android:title="@string/lightson" />
+    <item
+      android:id="@+id/nav_fidget5"
+      android:title="@string/widgets" />
   </group>
 
 </menu>
