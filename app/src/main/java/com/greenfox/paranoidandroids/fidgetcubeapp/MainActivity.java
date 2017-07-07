@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.DrawingFragment;
+import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.LightsOnFragment;
 import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.SpinnerFragment;
 import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.CatFragment;
 
@@ -69,6 +70,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
       case R.id.nav_fidget3:
         fragment = new DrawingFragment();
         Log.d(TAG, "displaySelectedScreen: DrawingFragment()");
+        break;
+      case R.id.nav_fidget4:
+        fragment = new LightsOnFragment();
+        Log.d(TAG, "displaySelectedScreen: LightsOnFragment()");
         break;
     }
     if (fragment != null) {
