@@ -5,4 +5,22 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent">
 
+  <Switch
+    android:id="@+id/switch_lights"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:text="@string/lightson" />
+  <Button
+    android:id="@+id/button_lights"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:text="@string/random_button" />
+  <SeekBar
+    android:id="@+id/seekBar_lights"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="100dp"
+    android:layout_marginEnd="100dp"/>
 </LinearLayout>
