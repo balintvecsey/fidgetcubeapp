@@ -32,7 +32,7 @@ public class LightsOnFragment extends Fragment{
     final SeekBar seekbarLightsOn = (SeekBar) view.findViewById(R.id.seekBar_lights);
     Log.d(TAG, "canWrite: " + Settings.System.canWrite(getContext()));
 
-    Switch switchLightsOn = (Switch) view.findViewById(R.id.switch_lights);
+    final Switch switchLightsOn = (Switch) view.findViewById(R.id.switch_lights);
     try {
       currentBrightness = System.getInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS);
       Log.d(TAG, "onCreateView: " + currentBrightness);
@@ -50,9 +50,11 @@ public class LightsOnFragment extends Fragment{
       public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if(isChecked) {
           currentBrightness = 255;
+          switchLightsOn.setChecked(true);
           Settings.System.putInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS, currentBrightness);
         } else  {
           currentBrightness = 0;
+          switchLightsOn.setChecked(false);
           Settings.System.putInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS, currentBrightness);
         }
         seekbarLightsOn.setProgress(currentBrightness);
