@@ -13,13 +13,16 @@ import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 import com.greenfox.paranoidandroids.fidgetcubeapp.MainActivity;
 import com.greenfox.paranoidandroids.fidgetcubeapp.R;
+import com.greenfox.paranoidandroids.fidgetcubeapp.service.LogicService;
 
 /**
  * Created by Bálint on 2017. 07. 07..
@@ -55,6 +58,18 @@ public class LightsOnFragment extends Fragment{
         }
       }
     });
+
+    Button buttonLightsOn = (Button) view.findViewById(R.id.button_lights);
+    buttonLightsOn.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        LogicService logicService = new LogicService();
+        int randomBrightness = logicService.randomNumber(0, 255);
+        Log.d(TAG, "onClick: " + randomBrightness);
+        Settings.System.putInt(getActivity().getContentResolver(), System.SCREEN_BRIGHTNESS, randomBrightness);
+      }
+    });
+
     return view;
   }
 }
