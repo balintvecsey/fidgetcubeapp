@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 
@@ -22,12 +23,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
   private DrawerLayout mDrawerLayout;
   private ActionBarDrawerToggle mToggle;
   private Fragment fragment;
+  private Toolbar mToolbar;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     displaySelectedScreen(R.id.nav_fidget1);
+
+    mToolbar = (Toolbar) findViewById(R.id.nav_action);
+    setSupportActionBar(mToolbar);
 
     mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
     mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
