@@ -8,23 +8,26 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.DrawingFragment;
-
 import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.SpinnerFragment;
 import com.greenfox.paranoidandroids.fidgetcubeapp.fragments.CatFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
+  private static final String TAG = "MainActivity";
   private DrawerLayout mDrawerLayout;
   private ActionBarDrawerToggle mToggle;
-  Fragment fragment;
+  private Fragment fragment;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    displaySelectedScreen(R.id.nav_fidget1);
 
     mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
     mToggle = new ActionBarDrawerToggle(this, mDrawerLayout, R.string.open, R.string.close);
@@ -52,12 +55,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     switch (id) {
       case R.id.nav_fidget1:
         fragment = new SpinnerFragment();
+        Log.d(TAG, "displaySelectedScreen: SpinnerFragment()");
         break;
       case R.id.nav_fidget2:
         fragment = new CatFragment();
+        Log.d(TAG, "displaySelectedScreen: CatFragment()");
         break;
       case R.id.nav_fidget3:
         fragment = new DrawingFragment();
+        Log.d(TAG, "displaySelectedScreen: DrawingFragment()");
         break;
     }
     if (fragment != null) {
