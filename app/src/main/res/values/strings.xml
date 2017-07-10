@@ -9,4 +9,9 @@
   <string name="lightson">Lights On</string>
   <string name="random_button">Random</string>
   <string name="widgets">Widgets</string>
+  <string name="settings_dialog_title">Allow permission</string>
+  <string name="settings_dialog_message">In order to use FidgetWidgets you need to allow modify system settings.
+    Click Settings if you want to proceed.</string>
+  <string name="settings_dialog_exit">Exit</string>
+  <string name="settings_dialog_change">Settings</string>
 </resources>

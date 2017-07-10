@@ -1,5 +1,6 @@
 package com.greenfox.paranoidandroids.fidgetcubeapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -10,6 +11,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -50,15 +52,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
     navigationView.setNavigationItemSelectedListener(this);
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
       if (!Settings.System.canWrite(getBaseContext())) {
-        Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_WRITE_SETTINGS);
-        intent.setData(Uri.parse("package:" + getPackageName()));
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        AlertDialog.Builder a_builder = new AlertDialog.Builder(MainActivity.this);
+        a_builder.setMessage(R.string.settings_dialog_message)
+            .setCancelable(false)
+            .setPositiveButton(R.string.settings_dialog_change, new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                permissionDialog();
+              }
+            })
+            .setNegativeButton(R.string.settings_dialog_exit, new DialogInterface.OnClickListener() {
+              @Override
+              public void onClick(DialogInterface dialog, int which) {
+                finishAffinity();
+              }
+            });
+        AlertDialog alert = a_builder.create();
+        alert.setTitle(R.string.settings_dialog_title);
+        alert.show();
       }
     }
+  }
+
+  private void permissionDialog() {
+    Intent intent = new Intent(android.provider.Settings.ACTION_MANAGE_WRITE_SETTINGS);
+    intent.setData(Uri.parse("package:" + getPackageName()));
+    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    startActivity(intent);
   }
 
   @Override
