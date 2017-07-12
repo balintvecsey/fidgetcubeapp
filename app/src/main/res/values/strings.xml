@@ -14,4 +14,5 @@
     Click Settings if you want to proceed.</string>
   <string name="settings_dialog_exit">Exit</string>
   <string name="settings_dialog_change">Settings</string>
+  <string name="welcome">Welcome!</string>
 </resources>
